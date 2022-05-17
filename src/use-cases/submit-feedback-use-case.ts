@@ -20,6 +20,13 @@ export class SubmitFeedbackUseCase {
       screenshot,
     })
 
+    if(!type){
+      throw new Error('Type is required.')
+    }
+    if(!comment){
+      throw new Error('Comment is required.')
+    }
+
     await this.mailAdapter.sendMail({
       subject: 'Novo Feedback',
       body: [
